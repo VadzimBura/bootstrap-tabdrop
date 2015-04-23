@@ -53,11 +53,16 @@
 	var TabDrop = function (element, options) {
 		this.element = $(element);
 		this.options = options;
-		if (options.align === "left")
+		if (options.align === "left"){
 			this.dropdown = $('<li class="dropdown hide pull-left tabdrop"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="display-tab"></span><b class="caret"></b></a><ul class="dropdown-menu"></ul></li>');
-		else
+		}
+		else{
+			if(this.element.css('display').indexOf('flex') > -1){
+				this.element.addClass('tabdrop-flex');
+			}
 			this.dropdown = $('<li class="dropdown hide pull-right tabdrop"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="display-tab"></span><b class="caret"></b></a><ul class="dropdown-menu"></ul></li>');
-		
+		}
+
 		this.dropdown.prependTo(this.element);
 		if (this.element.parent().is('.tabs-below')) {
 			this.dropdown.addClass('dropup');
