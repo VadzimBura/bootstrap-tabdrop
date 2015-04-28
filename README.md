@@ -1,7 +1,7 @@
 bootstrap-tabdrop
 =================
 
-A dropdown tab tool for @twitter bootstrap forked from Stefan Petre's (of eyecon.ro), improvements by @jschab
+A dropdown tab tool for @twitter bootstrap forked from Stefan Petre's (of eyecon.ro), improvements by @jschab and @josephdburdick
 
 The dropdown tab appears when your tabs do not all fit in the same row.
 
