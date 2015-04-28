@@ -105,7 +105,8 @@
       function handleFlexbox(){
         if (isUsingFlexbox(self)){
           if (self.element.find('li.tabdrop').hasClass('pull-right')){
-						self.element.css('padding-right', self.element.find('.tabdrop').outerWidth(true))          	
+          	self.element.find('li.tabdrop').css({position: 'absolute', right: 0});
+						self.element.css('padding-right', self.element.find('.tabdrop').outerWidth(true));
           }
         }  
       }
