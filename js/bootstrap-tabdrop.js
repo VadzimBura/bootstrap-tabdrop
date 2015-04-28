@@ -53,15 +53,11 @@
 	var TabDrop = function (element, options) {
 		this.element = $(element);
 		this.options = options;
-		if (options.align === "left"){
+
+		if (options.align === "left")
 			this.dropdown = $('<li class="dropdown hide pull-left tabdrop"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="display-tab"></span><b class="caret"></b></a><ul class="dropdown-menu"></ul></li>');
-		}
-		else{
-			if(this.element.css('display').indexOf('flex') > -1){
-				this.element.addClass('tabdrop-flex');
-			}
+		else
 			this.dropdown = $('<li class="dropdown hide pull-right tabdrop"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="display-tab"></span><b class="caret"></b></a><ul class="dropdown-menu"></ul></li>');
-		}
 
 		this.dropdown.prependTo(this.element);
 		if (this.element.parent().is('.tabs-below')) {
@@ -87,6 +83,9 @@
 		layout: function () {
 			var self = this;
 			var collection = [];
+      var isUsingFlexbox = function(el){
+        return el.element.css('display').indexOf('flex') > -1;
+      };
 
 			function setDropdownText(text) {
 				self.dropdown.find('a span.display-tab').html(text);
@@ -102,6 +101,15 @@
 				setDropdownText(text);
 			}
 
+      // Flexbox support
+      function handleFlexbox(){
+        if (isUsingFlexbox(self)){
+          if (self.element.find('li.tabdrop').hasClass('pull-right')){
+						self.element.css('padding-right', self.element.find('.tabdrop').outerWidth(true))          	
+          }
+        }  
+      }
+
 			function checkOffsetAndPush(recursion) {
 				self.element.find('> li:not(.tabdrop)')
 					.each(function () {
@@ -116,7 +124,7 @@
 						self.dropdown.find('ul').empty();
 					}
 					self.dropdown.find('ul').prepend(collection);
-
+					
 					if (self.dropdown.find('.active').length == 1) {
 						self.dropdown.addClass('active');
 						setDropdownText(self.dropdown.find('.active > a').html());
@@ -124,7 +132,7 @@
 						self.dropdown.removeClass('active');
 						setDropdownDefaultText(collection);
 					}
-
+          handleFlexbox();
 					collection = [];
 					checkOffsetAndPush(true);
 				} else {
@@ -133,7 +141,7 @@
 					}
 				}
 			}
-
+    
 			self.element.append(self.dropdown.find('li'));
 			checkOffsetAndPush();
 		}
