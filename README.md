@@ -18,7 +18,7 @@ Added functionality: Allows customizable offset to determine whether tab is over
 
 ## Example
 
-No additional HTML needed - the script adds it when the dropdown tab is needed.
+No additional HTML needed - the script adds it when the dropdown tab is needed. It also supports 
 
 Direct javascript:
 ```javascript
@@ -51,6 +51,15 @@ To change the default value, call
 .tabdrop({text: "your text here"});
 ```
 when initalizing the tabdrop. The displayed value will change when a tab is selected from the dropdown list.
+
+#### align 
+Type: string
+
+Default: right 
+```js
+$('.nav-tabs').tabdrop({align: 'left'});
+```
+when initalizing the tabdrop. The tab will align on the left or right. This addresses isses with tabs that utilize `display: flex`.
 
 #### offsetTop 
 Type: integer
